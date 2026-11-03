@@ -63,7 +63,7 @@ export default function MiPerfil() {
         </section>
         <section className="card p-5">
           <h2 className="font-medium mb-3">Vacaciones</h2>
-          <div className="grid grid-cols-4 gap-3 text-center">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
             <Dato k="Años" v={vacaciones.anios} /><Dato k="Derecho" v={vacaciones.derecho} /><Dato k="Usados" v={vacaciones.usados} />
             <div><div className="text-xs text-mute">Disponibles</div><div className="text-lg font-bold text-fox">{vacaciones.disponible}</div></div>
           </div>

@@ -51,7 +51,7 @@ function Detalle({ id, onBack, gestionar }) {
           {gestionar && n.estado === 'CERRADA' && <button className="btn btn-primary" onClick={() => accion('pagar')}>Marcar pagada</button>}
         </div>
       </div>
-      <div className="grid grid-cols-3 gap-4 max-w-2xl">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 max-w-2xl">
         {[['Devengado', n.totalDevengado], ['Descuentos', n.totalDescuentos], ['Neto a pagar', n.totalNeto]].map(([k, v], i) => (
           <div key={k} className="card p-4"><div className="text-xs text-mute uppercase">{k}</div><div className={`text-xl font-bold font-mono ${i === 2 ? 'text-fox' : ''}`}>{fmtQ(v)}</div></div>
         ))}

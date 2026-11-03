@@ -49,7 +49,7 @@ export default function Auditoria() {
     <div className="space-y-4">
       <h1 className="text-xl font-semibold">Auditoría y logs</h1>
 
-      <div className="flex gap-1 border-b border-line">
+      <div className="flex gap-1 border-b border-line overflow-x-auto whitespace-nowrap">
         {TABS.map((t) => (
           <button key={t.id} onClick={() => cambiarTab(t.id)}
             className={`px-4 py-2 text-sm -mb-px border-b-2 ${tab === t.id ? 'border-fox text-fox' : 'border-transparent text-mute hover:text-ink'}`}>

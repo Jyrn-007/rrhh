@@ -29,7 +29,7 @@ export default function Recibo({ detalleId, onClose }) {
               </div>
               <div className="text-right text-xs"><div className="font-mono">{r.empleado.codigo}</div><div>{r.periodo.estado}</div></div>
             </div>
-            <div className="grid grid-cols-2 gap-2 mb-4 text-xs border-y border-line py-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-4 text-xs border-y border-line py-3">
               <div><span className="text-mute">Empleado: </span>{r.empleado.nombre}</div>
               <div><span className="text-mute">DPI: </span>{r.empleado.dpi}</div>
               <div><span className="text-mute">Puesto: </span>{r.empleado.puesto ?? '—'}</div>

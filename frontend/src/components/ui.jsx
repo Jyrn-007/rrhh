@@ -27,13 +27,13 @@ export function Modal({ title, onClose, children, wide = false }) {
     return () => window.removeEventListener('keydown', h);
   }, [onClose]);
   return (
-    <div className="fixed inset-0 z-50 flex items-start justify-center bg-black/70 p-4 overflow-y-auto" onMouseDown={onClose}>
-      <div className={`card shadow-neon w-full ${wide ? 'max-w-3xl' : 'max-w-md'} my-8`} onMouseDown={(e) => e.stopPropagation()}>
+    <div className="fixed inset-0 z-[60] flex items-start justify-center bg-black/70 p-2 sm:p-4 overflow-y-auto" onMouseDown={onClose}>
+      <div className={`card shadow-neon w-full ${wide ? 'max-w-3xl' : 'max-w-md'} my-2 sm:my-8`} onMouseDown={(e) => e.stopPropagation()}>
         <div className="flex items-center justify-between px-5 py-3 border-b border-line">
           <h2 className="font-semibold">{title}</h2>
           <button className="text-mute hover:text-ink text-xl leading-none" onClick={onClose} aria-label="Cerrar">×</button>
         </div>
-        <div className="p-5">{children}</div>
+        <div className="p-4 sm:p-5">{children}</div>
       </div>
     </div>
   );
@@ -48,9 +48,9 @@ export function Alert({ tone = 'bad', children }) {
 export function Pager({ page, pageSize, total, onPage }) {
   const pages = Math.max(1, Math.ceil(total / pageSize));
   return (
-    <div className="flex items-center justify-between px-3 py-2 text-xs text-mute">
+    <div className="flex flex-wrap items-center justify-between gap-2 px-3 py-2 text-xs text-mute">
       <span>{total} registro(s)</span>
-      <div className="flex items-center gap-2">
+      <div className="flex flex-wrap items-center gap-2">
         <button className="btn btn-sm" disabled={page <= 1} onClick={() => onPage(page - 1)}>Anterior</button>
         <span>Página {page} de {pages}</span>
         <button className="btn btn-sm" disabled={page >= pages} onClick={() => onPage(page + 1)}>Siguiente</button>
@@ -72,10 +72,10 @@ export const MESES = ['', 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
 
 export function Tabs({ tabs, value, onChange }) {
   return (
-    <div className="flex flex-wrap gap-1 border-b border-line">
+    <div className="flex gap-1 border-b border-line overflow-x-auto whitespace-nowrap">
       {tabs.map((t) => (
         <button key={t.id} onClick={() => onChange(t.id)}
-          className={`px-4 py-2 text-sm -mb-px border-b-2 ${value === t.id ? 'border-fox text-fox' : 'border-transparent text-mute hover:text-ink'}`}>
+          className={`px-3 sm:px-4 py-2 text-sm -mb-px border-b-2 shrink-0 ${value === t.id ? 'border-fox text-fox' : 'border-transparent text-mute hover:text-ink'}`}>
           {t.label}{t.badge ? <span className="ml-2 text-[10px] bg-fox text-canvas rounded-full px-1.5 py-0.5 font-semibold">{t.badge}</span> : null}
         </button>
       ))}

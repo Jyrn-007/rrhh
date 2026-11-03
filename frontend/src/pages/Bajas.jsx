@@ -100,7 +100,7 @@ function VerBaja({ id, onClose, gestionar, onChanged }) {
         <div id="imprimible" className="card p-6 text-sm">
           <div className="text-lg font-bold text-fox">{data.empresa}</div>
           <div className="text-xs text-mute mb-3">Liquidación laboral · {tipoTxt(data.baja.tipo)}</div>
-          <div className="grid grid-cols-2 gap-x-6 gap-y-1 text-xs mb-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1 text-xs mb-4">
             <div><span className="text-mute">Empleado: </span>{data.empleado.nombre} ({data.empleado.codigo})</div>
             <div><span className="text-mute">DPI: </span>{data.empleado.dpi ?? '—'}</div>
             <div><span className="text-mute">Puesto: </span>{data.empleado.puesto ?? '—'}</div>
@@ -114,7 +114,7 @@ function VerBaja({ id, onClose, gestionar, onChanged }) {
           <Desglose c={{ indemnizacion: l.indemnizacion, aguinaldo: l.aguinaldo, bono14: l.bono14, vacacionesDias: l.vacacionesDias, vacacionesMonto: l.vacacionesMonto, salarioPendiente: l.salarioPendiente }}
             otros={l.otrosIngresos} desc={l.descuentos} total={l.total} />
           {l.observaciones && <p className="text-xs text-mute mt-3">Obs.: {l.observaciones}</p>}
-          <div className="grid grid-cols-2 gap-12 mt-14 text-xs text-center"><div className="border-t border-line pt-1">Firma del empleado</div><div className="border-t border-line pt-1">Representante de la empresa</div></div>
+          <div className="grid grid-cols-2 gap-6 sm:gap-12 mt-14 text-xs text-center"><div className="border-t border-line pt-1">Firma del empleado</div><div className="border-t border-line pt-1">Representante de la empresa</div></div>
         </div>
         <div className="flex justify-end gap-2 mt-4">
           {gestionar && <button className="btn" onClick={() => setAj(true)}>Ajustar montos</button>}
