@@ -1,6 +1,6 @@
-import axios from 'axios';
+﻿import axios from 'axios';
 
-const BASE = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+const BASE = (import.meta.env.VITE_API_URL || 'http://localhost:5000').trim().replace(/\/+$/, '');
 const KEY_REFRESH = 'kh_refresh';
 const KEY_USER = 'kh_user';
 
@@ -49,7 +49,6 @@ export function refreshSession() {
       .post(`${BASE}/api/auth/refresh`, { refreshToken: rt })
       .then((r) => { applySession(r.data); return r.data; })
       .catch((e) => {
-        // Solo se cierra la sesión si el servidor la rechaza; un fallo de red o un 429 no debe sacar al usuario.
         const st = e?.response?.status;
         if (st === 401 || st === 403) clearSession();
         throw e;
@@ -82,7 +81,8 @@ export function errMsg(e) {
   if (e?.response?.status === 429) return 'Demasiados intentos. Espere un momento.';
   if (e?.response?.status === 403) return 'No tiene permiso para esta acción.';
   if (!e?.response) return 'No se pudo conectar con el servidor.';
-  return 'Ocurrió un error inesperado.';
+  const c = e.config;
+  return `Ocurrió un error inesperado (HTTP ${e.response.status}${c ? ` ${String(c.method).toUpperCase()} ${c.url}` : ''}).`;
 }
 
 /** Descarga un archivo (Excel) autenticado. */
